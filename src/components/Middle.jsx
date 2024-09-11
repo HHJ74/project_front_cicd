@@ -1,7 +1,7 @@
 import React from 'react';
 // import 미들 from './미들.jpg'
 // import 사진 from './skin_all.jpg'
-import 미들2 from './미들3.png';
+import middle2 from './middle3.png';
 // import 미들3 from './whipped.jpeg'
 import { useNavigate } from 'react-router-dom';
 const Middle = () => {
@@ -46,7 +46,7 @@ const Middle = () => {
         </div>
       </div>
       <div className="middle_img">
-        <img src={미들2} alt="" />
+        <img src={middle2} alt="" />
       </div>
     </div>
   );
