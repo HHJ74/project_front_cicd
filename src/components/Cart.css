@@ -1,0 +1,91 @@
+
+
+.cart-container {
+
+  font-family: Arial, sans-serif;
+  color: #333;
+  
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+.login-join {
+  align-self: center;
+}
+
+.breadcrumb {
+  margin: 20px 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.item-info {
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-control button {
+  padding: 5px 10px;
+}
+
+.quantity-control input {
+  width: 30px;
+  text-align: center;
+}
+
+.update-button {
+  margin-left: 20px;
+  padding: 10px 20px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.summary {
+  margin: 20px 0;
+}
+
+.order-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-button, .select-button {
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.naver-pay {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.cartItem img{
+  width: 100px;
+} 

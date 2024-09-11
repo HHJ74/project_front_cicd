@@ -1,0 +1,76 @@
+.slider{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(246, 246, 242);
+  
+}
+
+.slider .skin_img_one{
+  width: 70%;
+  height: 100%;
+}
+
+.slider .skin_img_two {
+  width : 70%;
+  height: 100%;
+  background-color: rgb(246, 246, 242);
+  display: flex;
+  gap: 20px;
+}
+
+
+.slider .skin_img_two img{
+  margin: auto 0;
+  width: 25%;
+  height: 80%;
+}
+.skin_img_two > div{
+  margin: auto 0;
+  width : 25%;
+  height: 80%;
+  background-color: #cad0c3;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: solid rgb(244, 241, 241);
+  /* border-radius: 10%; */
+  align-items: center;
+  justify-content: center;
+}
+
+
+.slider .skin_btn{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+    
+}
+
+.slider .skin_btn .skin_btn1,.skin_btn2,.skin_btn3{
+width: 50%;
+}
+
+.slider .skin_btn button{
+  padding: 15px;
+  background-color: #aab89d;
+  color: rgb(54, 54, 54);
+  /* border: solid rgb(194, 194, 181); */
+  border : none;
+  /* border-radius: 5px; */
+  cursor: pointer;
+  margin-left: 5px;
+  margin: auto 0;
+  width: 100%;
+}
+
+
+
+.slider .skin_btn button:hover{
+  opacity:0.3;
+  /* border: solid rgb(79, 94, 109) 0.5px; */
+  
+}

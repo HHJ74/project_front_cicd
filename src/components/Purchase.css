@@ -1,0 +1,316 @@
+.container {
+  width: 100%;  
+  margin: 0 auto;
+  max-width: 800px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  height: 100%;
+}
+
+.purchaseForm{
+  height: 100%;
+}
+
+.formSection{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  background: #f6f4f4;
+
+}
+
+.formSection .title{
+  width: 100%;
+  line-height: 50px;
+  border: 1px solid #ccc;
+  background: #aab89d;
+  color: white;
+  text-align: center;
+}
+
+.formSection .subTitle{
+  width: 100%;
+  margin: 15px 0;
+  text-align: center;
+  padding-left: 10px;
+}
+
+.formSection .receiver{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;  
+}
+
+.formSection .receiver .receiverTitle{
+width: 15%;
+}
+.formSection .receiver .receiverInput{
+  width: 70%;
+}
+.formSection .receiver .receiverInput input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;  
+}
+
+
+
+.formSection .zonecode{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.formSection .zonecodeTitle{
+  width: 15%;
+}
+.formSection .zonecodeInput{
+  width: 50%;
+}
+.formSection .zonecodeButton{
+  width: 15%;
+  margin-left: 10px;
+}
+
+.formSection .zonecode input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 70px;
+}
+
+.formSection .zonecode button{
+  width: 100%;
+  padding: 10px;
+  background-color: #aab89d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.formSection .andAddress1,.andAddress2{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+}
+
+.formSection .andAddress1_1,.andAddress2_1{
+  width: 15%;
+}
+
+.formSection .andAddress1_2,.andAddress2_2{
+  width: 50%;
+}
+
+.formSection .andAddress1_2 input, .andAddress2_2 input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 70px;
+}
+
+.formSection .zonecode{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.formSection .phone{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.formSection .phoneTitle{
+  width: 15%;
+}
+
+.formSection .phoneInput{
+  width: 40%;
+  
+}
+
+.formSection .phoneInput select{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.formSection .phoneInput input{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px; 
+  margin-right: 6px;
+}
+
+.formSection .email{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.formSection .emailTitle{
+  width: 15%;
+}
+.formSection .emailInput{
+  width: 58%;
+}
+
+.formSection .emailInput select{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 8px;
+}
+
+.formSection .emailInput input{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 7px; 
+}
+
+.formSection .messageTitle{
+  width: 80%;
+  margin: 0 auto; 
+}
+
+.formSection .messageTitle select{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;  
+}
+
+
+.formSection .messageTitle input{
+  margin-top: 10px;
+  padding: 80px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;  
+}
+
+.formSection .product{
+  width: 100%;
+  margin: 15px auto;
+}
+
+.formSection .product .productTitle{
+  width: 100%;
+  line-height: 50px;
+  border: 1px solid #ccc;
+  background: #aab89d;
+  color: white;
+  text-align: center;
+}
+.formSection .product .productInfo{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  justify-content: center;
+  padding: 20px;
+}
+
+.formSection .product .productInfo .infoImage{
+  margin: 20px;
+  width: 30%;
+  
+}
+
+.formSection .product .productInfo .infoSub{
+  margin: 20px;
+  width: 30%;
+}
+.formSection .product .productInfo .infoSub p{
+  margin-bottom: 10px;
+}
+
+.formSection .payment .paymentTitle h3, .paymentSub p{
+  margin: 20px;
+}
+
+.formSection .payment .paymentMethods{
+  margin-bottom: 30px;
+}
+
+.formSection .payment .paymentMethods div{
+  border: 0.5px solid #ccc;
+  padding: 20px;  
+  cursor: pointer;
+}
+
+.formSection .payment .paymentForm .paymentFormBank1{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.formSection .payment .paymentForm .paymentFormBank2{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.formSection .payment .paymentForm .paymentFormBank1 .bankTitle, .paymentFormBank2 .peopleName{
+  width: 15%;
+}
+
+.formSection .payment .paymentForm .paymentFormBank1 .bankName, .paymentFormBank2 .peolpleInput{
+  width: 70%;
+  
+}
+
+.formSection .payment .paymentForm .paymentFormBank1 .bankName select, .paymentFormBank2 .peolpleInput input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+
+.formSection .payment .paymentForm .escrowForm{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.formSection .payment .paymentForm .escrowForm .escrowName{
+  width: 15%;
+}
+
+.formSection .payment .paymentForm .escrowForm .escrowInput{
+  width: 70%;
+  
+}
+
+.formSection .payment .paymentForm .escrowForm .escrowInput input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+
+
+.formSection .submitButton{
+  width: 80%;
+  padding: 15px;
+  margin: 30px auto;
+  background-color: #aab89d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+

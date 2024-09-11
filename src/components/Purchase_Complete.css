@@ -1,0 +1,59 @@
+.completeContainer{
+  width: 100wh;
+  height: 100vh;
+  background: #f6f4f4
+}
+
+.contentContainer{
+  width: 800px;
+  height: 100%;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  background: #f6f4f4
+}
+
+.contentContainer .contentWrap{
+  width: 100%;
+  height: 500px;
+   
+}
+
+.contentContainer .contentWrap .completeTitle{
+  width: 100%;
+  font-size: 30px;
+  
+  margin-bottom: 50px;
+  padding: 20px;
+  background: #aab89d;
+  color: white;
+  margin-top: 100px;
+}
+
+.contentContainer .contentWrap .completeSub .completeSubDes p{ 
+  margin-bottom: 10px;
+}
+
+.contentContainer .contentWrap .completeSubTitle{
+  top:0;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 30px 0;
+}
+
+.contentContainer .contentWrap .completeSubTitle2{
+  top:0;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 30px 0;
+}
+.contentContainer .contentWrap button{
+  width: 60%;
+  padding: 15px;
+  margin: 30px auto;
+  background-color: #aab89d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}

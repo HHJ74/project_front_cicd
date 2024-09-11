@@ -1,0 +1,97 @@
+.Login-container {
+    width: 100%;  
+    margin: 0 auto;
+    max-width: 500px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    justify-content: center;  
+  }
+
+.Login-contents{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    width: 80%;
+    height: 50%;
+    margin-top: 100px
+}
+
+.header{
+    top:0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header span{
+  width: 20px;
+  height: 20px;
+}
+
+.한글안내{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 30px;
+
+}
+
+.kakaoExplain{  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.kakaoExplain p{
+    margin: 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.간편회원가입{
+    margin-bottom: 10px;
+}
+
+.로그인입력창{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    text-align: center; 
+    width: 95%;
+    height: 100%;
+    font-size: 1rem;
+    row-gap: 10px;
+}
+
+.로그인입력창 input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.userFind>a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    
+}
+
+.submitButton {
+    width: 100%;
+    padding: 15px;
+    margin: 30px auto;
+    background-color: #e69d9d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+  }

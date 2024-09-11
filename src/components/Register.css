@@ -1,0 +1,165 @@
+.regi_container {
+    width: 100%;  
+    margin: 0 auto;
+    max-width: 800px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 100%;
+    padding: 0;
+  }
+  
+  .kakaobutton {
+    border: 2px solid #FEE500;
+    border-radius: 5px;
+    background-color: #FEE500;
+    padding: 10px 30px; 
+    margin-bottom: 20px; 
+    cursor: pointer;
+  }
+  
+  .title {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    line-height: 50px;
+    
+    background: #ffcbde;
+    color: white;
+    text-align: center; 
+  }
+
+  .입력창{
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    text-align: center; 
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-size: 1rem;
+    row-gap: 20px;
+    
+  }
+
+  .userInfo{
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+  }
+  
+  .회원구분, .직접입력사항{
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+
+  .회원구분 div {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    
+  }
+  
+  .직접입력사항 label {
+    width: 30%;
+    font-weight: bold;
+    justify-content: left; 
+    row-gap: 10px;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .직접입력사항 input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+    box-sizing: border-box;
+    
+  }
+  
+
+  .입력창 .form-control {
+    margin-bottom: 15px;
+  }
+  
+  .주소 .zonecode  {
+    margin-bottom: 15px;
+    width: 70%;
+  }
+
+  .주소 .addressbutton{
+    margin-left: 17px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 25%;
+    background: #ffcbde;
+    border: none;
+    
+  }
+
+  .직접입력사항 .phoneInput, .직접입력사항 .emailInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .직접입력사항 .phoneInput select, .직접입력사항 .phoneInput input, .직접입력사항 .emailInput input, .입력창 .emailInput select {
+    width: 9rem;
+    margin-right: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .직접입력사항 .phoneInput select, .직접입력사항 .emailInput select {
+    margin-left: 10px;
+  }
+  
+  .sex div {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-sizing: border-box;
+    
+  }
+
+  .직접입력사항 input[type="radio"] {
+    width: auto;
+    margin-left: 10px;
+    
+  }
+
+  .입력창 .submitButton {
+    width: 100%;
+    padding: 15px;
+    margin: 30px auto;
+    background-color: #ffcbde;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+  }
+  
+  .입력창 p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #666;
+  }

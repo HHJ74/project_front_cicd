@@ -1,0 +1,86 @@
+
+.community-index{
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.contents-header h2{
+    padding-bottom: 15px;
+}
+
+.contents-container{
+    border-bottom: 1px solid #aab89d;
+    padding-bottom: 15px;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contents-basis {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #aab89d
+}
+
+.contents-basis p {
+  flex-grow: 1; 
+  margin: 0;
+  padding: 0 10px;
+  text-align: center; 
+}
+
+.contents-basis .number {
+  flex-grow: 0.1; 
+}
+
+.contents-basis .basis-title {
+  flex-grow: 3; 
+}
+
+.contents-basis .author {
+  flex-grow: 0.2; 
+}
+
+.contents-basis .date {
+  flex-grow: 0.2; 
+}
+
+.contents-basis .views {
+  flex-grow: 0.1; 
+}
+
+.contents-upload{
+    border: 1px solid #ddd;
+    background-color: #ddd;
+}
+
+.contents-empty {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.contents-container div div {
+    display: flex;
+    justify-content: center;
+    padding: 13px
+}
+
+.contents-footer{
+    gap: 15px;
+    display: flex;
+    padding-top: 15px;
+}
+
+.contents-footer div{
+    border: 1px solid black;
+    padding: 4px;
+    
+}
+
+.search-btn{
+    padding: 3px;
+}
