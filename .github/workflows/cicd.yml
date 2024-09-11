@@ -31,7 +31,7 @@ jobs:
   deploy:
     needs: build
     runs-on: aws-ec2
- —------ 이 부분까지 입력하고, 19 ~ 28번 절차 진행
+ 
     steps:
       - name: Pull image from docker hub
         run: docker pull gpgus0704/whipped_pj_front:latest
