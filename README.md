@@ -13,7 +13,7 @@ Whipped는 친환경 제품을 판매하는 쇼핑몰 웹사이트입니다. 이
 1. **레포지토리 클론:**
 
    ```bash
-   git clone https://github.com/gpgus0704/front.git
+   git clone https://github.com/HHJ74/project_front_cicd.git
    cd whipped_f4
 
 2. **의존성 설치**
