@@ -109,7 +109,7 @@ const Register = () => {
     }
 
     axios
-      .post('https://whipped.purple-coding.site/register', values)
+      .post('https://whippedb4.hyee34.site/register', values)
       .then((res) => {
         if (res.status === 201) {
           navigate('/login');

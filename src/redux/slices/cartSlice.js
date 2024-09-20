@@ -15,10 +15,17 @@ const cartSlice = createSlice({
                   item.quantity = quantity;
                 }
               },
+        updateDiyQuantity:(state, action) =>{
+          const {selected_options, quantity} = action.payload
+          const item = state.items.find(item => item.selected_options === selected_options);
+          if (item){
+            item.quantity = quantity
+          }
+        },
         
     }
 });
-export const { addItem, updateItemQuantity } = cartSlice.actions
+export const { addItem, updateItemQuantity, updateDiyQuantity} = cartSlice.actions
 
 
 

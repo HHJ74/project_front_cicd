@@ -12,6 +12,7 @@ const Cart = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [isNormal, setIsNormal] = useState(true);
   const [totalPrice, setTotalPrice] = useState('');
+  const [selectedPrice, setSelectedPrice] = useState('')
   const [diPrice, setDiyPrice] = useState('')
   const { productId } = useParams();
   const [diyItem, setDiyItems] = useState([])
@@ -23,16 +24,16 @@ const Cart = () => {
   };
   //  선택상품 보내기
   const [checkItems, setCheckItems] = useState([]);
-  const handleSingleCheck = (checked, productId, productSize, quantity, isDiy = false, cartItemId = null,) => {
+  const handleSingleCheck = (checked, productId, productSize, quantity, isDiy = false, cartItemId , details) => {
     if (checked) {
       // 배열에 선택된 아이템 추가
-      setCheckItems((prev) => [...prev, { productId, productSize, quantity, isDiy, cartItemId, }]);
+      setCheckItems((prev) => [...prev, { productId, productSize, quantity, isDiy, cartItemId, details }]);
     } else {
       // 선택 해제된 아이템을 배열에서 제거
       setCheckItems((prev) =>
         prev.filter(
           (item) =>
-            !(item.productId === productId && item.productSize === productSize && item.isDiy === isDiy)
+            !(item.productId === productId && item.productSize === productSize && cartItemId === item.cartItemId )
         )
       );
     }
@@ -83,6 +84,7 @@ const Cart = () => {
       }
     });
   
+    console.log(selectedItems);
     navigate('/purchase', {
       state: { selectedItems },
     });
@@ -155,10 +157,10 @@ const Cart = () => {
   useEffect(() => {
     const fetchCarts = async () => {
       try {
-        const response = await axios.get(`https://whipped.purple-coding.site/get_cart/${userId}`);
+        const response = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
         const {cartItems, diyItems } = response.data;
         const productRequests = cartItems.map((item) =>
-          axios.get(`https://whipped.purple-coding.site/get_detail_products/${item.product_id}`)
+          axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
         );
 
         const productResponses = await Promise.all(productRequests);
@@ -171,10 +173,10 @@ const Cart = () => {
 
 
         const diyRequests = diyItems.map((item) =>
-          axios.get(`https://whipped.purple-coding.site/get_detail_products/${item.product_id}`)
+          axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
         );
         const diyResponses = await Promise.all(diyRequests);
-  
+        
         const productsWithDiyDetails = diyItems.map((item, index) => ({
           ...item,
           details: diyResponses[index].data[0],
@@ -192,7 +194,6 @@ const Cart = () => {
         // 상태 업데이트
         setCarts(sortedCarts);
         setDiyItems(sortedDiyItems);
-  
         // 가격 계산
         calculateTotalPrice(sortedCarts);
         calculateDiyPrice(sortedDiyItems);
@@ -222,17 +223,30 @@ const Cart = () => {
     return total;
   };
   
+  const calculateSelectedCartsPrice = (checkItems) =>{
+    const total = checkItems.reduce((sum, item)=>{
+      const itemPriceKey = item.productSize === 'null' ? 'p_price' : (item.productSize === '130g' ? 'p_price_1' : 'p_price')
+      // const itemPriceKey = item.product_size === '130g' ? 'p_price_1' : 'p_price';
+      const itemPrice = parseInt(item.details?.[itemPriceKey].replace(/,/g, ''), 10)  || 0;
+      return sum + itemPrice * (item.quantity)
+    }, 0);
+    return total;
+  }
+
   useEffect(() => {
     if (carts && diyItem) {
       const cartTotal = calculateTotalPrice(carts);
       const diyTotal = calculateDiyPrice(diyItem);
+      const selectedTotal = calculateSelectedCartsPrice(checkItems)
       const grandTotal = cartTotal + diyTotal;
-  
       const formattedTotal = new Intl.NumberFormat().format(grandTotal);
+      const formattedTotal2 = new Intl.NumberFormat().format(selectedTotal);
       setTotalPrice(formattedTotal);
+      setSelectedPrice(formattedTotal2)
+ 
   
     }
-  }, [carts, diyItem]);
+  }, );
   
 
   
@@ -246,15 +260,15 @@ const Cart = () => {
         : { productId, productSize, newQuantity };
   
       // 수량 업데이트 요청
-      await axios.post(`https://whipped.purple-coding.site/update_quantity/${userId}`, requestBody);
+      await axios.post(`https://whippedb4.hyee34.site/update_quantity/${userId}`, requestBody);
   
       // 장바구니와 DIY 아이템 모두 새로 가져오기
-      const response = await axios.get(`https://whipped.purple-coding.site/get_cart/${userId}`);
+      const response = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
       const { cartItems, diyItems } = response.data;
   
       // 장바구니와 DIY 아이템의 상세 정보를 가져옵니다.
       const productRequests = cartItems.map(item =>
-        axios.get(`https://whipped.purple-coding.site/get_detail_products/${item.product_id}`)
+        axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
       );
       const productResponses = await Promise.all(productRequests);
   
@@ -264,7 +278,7 @@ const Cart = () => {
       }));
   
       const diyRequests = diyItems.map(item =>
-        axios.get(`https://whipped.purple-coding.site/get_detail_products/${item.product_id}`)
+        axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
       );
       const diyResponses = await Promise.all(diyRequests);
   
@@ -287,16 +301,29 @@ const sortedDiyItems = productsWithDiyDetails.sort((a, b) => a.cart_item_id - b.
 setCarts(sortedCartItems);
 setDiyItems(sortedDiyItems);
 
+
+
 // 총 가격 재계산
 calculateTotalPrice(sortedCartItems);
 calculateDiyPrice(sortedDiyItems);
 
+// console.log(productsWithDetails);
   
     } catch (error) {
       console.log('Failed to update quantity', error.response || error.message);
     }
   };
   
+  const handleQuantityChange = (productId, productSize, newQuantity, cartItemId) => {
+    setCheckItems((prev) =>
+      prev.map((item) =>
+        item.productId === productId && item.productSize === productSize && item.cartItemId === cartItemId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
+  };
+
   
   
 
@@ -309,10 +336,10 @@ calculateDiyPrice(sortedDiyItems);
     
       if (isDiyItem) {
         // DIY 아이템 삭제 요청
-        await axios.post(`https://whipped.purple-coding.site/delete_item/${userId}`, { cartItemId });
+        await axios.post(`https://whippedb4.hyee34.site/delete_item/${userId}`, { cartItemId });
       } else {
         // 일반 아이템 삭제 요청
-        await axios.post(`https://whipped.purple-coding.site/delete_item/${userId}`, { productId, productSize });
+        await axios.post(`https://whippedb4.hyee34.site/delete_item/${userId}`, { productId, productSize });
       }
   
       // 장바구니에서 삭제된 아이템 필터링
@@ -325,7 +352,7 @@ calculateDiyPrice(sortedDiyItems);
       const productRequests = updatedCarts
         .filter(item => !item.is_bundle)  // is_bundle이 false인 경우에만 요청
         .map((item) =>
-          axios.get(`https://whipped.purple-coding.site/get_detail_products/${item.product_id}`)
+          axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
         );
   
       const productResponses = await Promise.all(productRequests);
@@ -345,6 +372,11 @@ calculateDiyPrice(sortedDiyItems);
       const updatedDiyItems = diyItem.filter(item =>
         item.cart_item_id !== cartItemId
       );
+
+
+
+
+      
       const sortedCarts = updatedCarts.sort((a, b) => {
         if (a.product_id !== b.product_id) {
           return a.product_id - b.product_id;
@@ -359,14 +391,32 @@ calculateDiyPrice(sortedDiyItems);
   
       calculateTotalPrice(sortedCarts);
       calculateDiyPrice(sortedDiyItems);
+      const totalSelectedPrice = checkItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
+      setSelectedPrice(totalSelectedPrice);
     } catch (error) {
       console.log('Failed to delete item', error);
     }
   };
+
+
+  
+  const handleCheckChange = (productId, productSize, cartItemId) => {
+    let updatedCheckItems = checkItems.filter((item) => {
+      if (item.isDiy) {
+        // DIY 제품의 경우 cartItemId로만 삭제
+        return item.cartItemId !== cartItemId;
+      } else {
+        // 일반 제품의 경우 productId와 productSize로 삭제
+        return !(item.productId === productId && item.productSize === productSize);
+      }
+    });
+    
+    setCheckItems(updatedCheckItems);
+  };
   
   const deleteAll = async()=>{
     try {
-     const response = await axios.post(`https://whipped.purple-coding.site/delete_all/${userId}`)
+     const response = await axios.post(`https://whippedb4.hyee34.site/delete_all/${userId}`)
       if (response.status === 200) {
         // Clear the cart items state to reflect the changes
         setCarts([])
@@ -377,8 +427,146 @@ calculateDiyPrice(sortedDiyItems);
       console.log('Failed to delete item', error);
     }
   }
+  const handleAllCheck = (checked) => {
+    if (checked) {
+      // 모든 상품의 정보를 checkItems 배열에 추가
+      const allItems = carts.map(cart => ({
+        productId: cart.product_id,
+        productSize: cart.product_size,
+        quantity: cart.quantity,
+        details : cart.details,
+        selectedOptions: cart.selected_options,
+        cartItemId : cart.cart_item_id,
+      }));
+      const diyItems = diyItem.map(item =>({
+        productId : item.product_id,
+        productSize : null,
+        quantity : item.quantity,
+        details : item.details,
+        isDiy : true,
+        cartItemId : item.cart_item_id,
+      }
+
+      ))
+      const Items = [...allItems, ...diyItems];
+      console.log(checked);
+      setCheckItems(Items); // 모든 상품을 checkItems에 저장
+    } else {
+      setCheckItems([]); // 전체 해제 시 checkItems 비우기
+    }
+  };
+
+  const deleteCheckedItems = async () => {
+  try {
+    // 체크된 아이템 목록 준비
+    const itemsToDelete = checkItems.map(item => {
+      if (item.isDiy) {
+        // DIY 아이템일 경우
+        return {
+          productId: item.productId,  // DIY 아이템의 경우 적절한 속성 사용
+          productSize: null,  // DIY 아이템의 경우 productSize는 null일 수 있음
+          cartItemId: item.cartItemId,
+          details : item.details,
+          isDiy: true,
+          
+        };
+      } else {
+        // 일반 아이템일 경우
+        return {
+          productId: item.productId,  // 일반 아이템의 경우 productId 사용
+          productSize: item.productSize,
+          cartItemId: item.cartItemId,  // 일반 아이템의 경우 cartItemId는 null일 수 있음
+          isDiy: null,
+          selectedOptions: item.selected_options
+        };
+      }
+    });
+    // 서버에 삭제 요청 전송
+    await axios.post(`https://whippedb4.hyee34.site/delete_checked_items/${userId}`, { items: itemsToDelete });
+
+    // 삭제 후 장바구니 데이터 가져오기
+    const updatedCartResponse = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
+    
+    // 응답 데이터 로그에 찍기
+    console.log('Updated Cart Response:', updatedCartResponse.data);
+
+    // 장바구니 데이터에서 일반 아이템과 DIY 아이템 분리
+    let updatedCarts = updatedCartResponse.data.cartItems; // 일반 아이템
+    let updatedDiyItems = updatedCartResponse.data.diyItems; // DIY 아이템
+   
+    // 일반 아이템의 상세 정보 요청
+    const productRequests = updatedCarts
+      .filter(item => !item.is_bundle)  // is_bundle이 false인 경우에만 요청
+      .map(item =>
+        axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+      );
+   
+    // 상세 정보 응답 받기
+    const productResponses = await Promise.all(productRequests);
+      
+    // 아이템 상세 정보 업데이트
+    updatedCarts = updatedCarts.map(item => {
+      if (!item.is_bundle) {
+        return {
+          ...item,
+          details: productResponses.find(response => response.data[0].product_id === item.product_id)?.data[0] || item.details,
+        };
+      }
+      return item;
+    });
+  
+    const diyRequests = updatedDiyItems.map(item =>
+      axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+    );
+    const diyResponses = await Promise.all(diyRequests);
+
+    const productsWithDiyDetails = updatedDiyItems.map((item, index) => ({
+      ...item,
+      details: diyResponses[index].data[0],
+    }));
+
+    // 아이템 정렬
+    const sortedCarts = updatedCarts.sort((a, b) => {
+      if (a.product_id !== b.product_id) {
+        return a.product_id - b.product_id;
+      }
+      return (a.product_size || '').localeCompare(b.product_size || '');
+    });
+
+
+    const sortedDiyItems = productsWithDiyDetails.sort((a, b) => a.cart_item_id - b.cart_item_id);
+
+    // 상태 업데이트
+    setCarts(sortedCarts);  // 정렬된 일반 아이템 상태 업데이트
+    setDiyItems(sortedDiyItems);  // 정렬된 DIY 아이템 상태 업데이트
  
-  // console.log(diyItem);
+    // 가격 계산
+    calculateTotalPrice(sortedCarts);
+    calculateDiyPrice(sortedDiyItems);
+
+    // 선택된 아이템의 총 가격 계산
+    const totalSelectedPrice = checkItems.reduce((acc, item) => acc + (item.quantity || 0) * (item.price || 0), 0);
+    setSelectedPrice(totalSelectedPrice);
+   
+    // 체크된 아이템 초기화
+    setCheckItems([]);
+
+  } catch (error) {
+    // 에러가 발생한 경우 콘솔에 출력
+    console.error('Failed to delete checked items or fetch updated cart:', error);
+  }
+};
+
+useEffect(() => {
+  console.log('Updated checkItems:', checkItems);
+}, [checkItems]);
+
+  
+ 
+  console.log(checkItems);
+  console.log(diyItem);
+  // console.log(selectedPrice);
+ 
   return (
     <div className="cart" style={{ height: 'max-content' }}>
       <div className="cart_wrapper">
@@ -399,9 +587,18 @@ calculateDiyPrice(sortedDiyItems);
               >
                 장바구니상품
               </div>
-              {isNormal ? <><div className="cart_normal">일반상품 ({carts.length + diyItem.length}) </div>
-              <div className="cart_normal_2"><button onClick={deleteAll} className='delete_all_btn'>전체 삭제</button></div></> : ''
+              {isNormal ? 
+              <>
+              <div className="cart_normal">일반상품 ({carts.length + diyItem.length}) 
+                      <div className='input_wrapper'><input type="checkbox" className="normal_input" style={{order:"1"}}onClick = {(e) => handleAllCheck(e.target.checked)} 
+                checked={checkItems.length === (carts.length + diyItem.length) ? true : false} /></div>
+              </div>
+              <div className="cart_normal_2_wrapper">
+              <div className="cart_normal_2" style={{order:"3"}}><button onClick={deleteAll} className='delete_all_btn'>전체 삭제</button></div>
+              <div className="cart_normal_2" style={{order:"2"}}><button onClick={deleteCheckedItems} className='delete_all_btn'>선택 삭제</button></div>
+        </div></> : ''
               }
+            
             </div>
             <div className="All">
             {/* <button  className="deleteAll_btn">전체 삭제</button> */}
@@ -415,7 +612,7 @@ calculateDiyPrice(sortedDiyItems);
                       type="checkBox"
                       style={{ marginRight: '20px' }}
                       onChange={(e) =>
-                        handleSingleCheck(e.target.checked, cart.product_id, cart.product_size, cart.quantity, cart.selected_options)
+                        handleSingleCheck(e.target.checked, cart.product_id, cart.product_size, cart.quantity, cart.selected_options, cart.cart_item_id, cart.details)
                       }
                       checked={checkItems.some(
                         (item) => item.productId === cart.product_id && item.productSize === cart.product_size
@@ -458,8 +655,20 @@ calculateDiyPrice(sortedDiyItems);
                         <div style={{ width: '100px' }}>
                           <MdClose
                             style={{ cursor: 'pointer', height: '30px', width: '30px', color: '#d3d0d0' }}
-                            onClick={() => {
-                              noItem(userId, cart.product_id, cart.product_size);
+                            // onClick={() => {
+                            //   noItem(userId, cart.product_id, cart.product_size);
+                            // }}
+                            onClick={async () => {
+                              try {
+                                // 서버에 수량 변경 요청을 보내고
+                                // await handleCheckChange(cart.product_id, cart.product_size, cart.cart_item_id);
+                                await noItem(userId, cart.product_id, cart.product_size);
+                            
+                                // 서버 응답 후에 `checkItems` 상태 업데이트
+                                handleCheckChange(cart.product_id, cart.product_size, cart.cart_item_id);
+                              } catch (error) {
+                                console.error("Failed to delete items", error);
+                              }
                             }}
                           />
                         </div>
@@ -468,18 +677,34 @@ calculateDiyPrice(sortedDiyItems);
                         <div>
                           <button
                             className="quantity_btn"
-                            onClick={() =>
-                              quantityChange(userId, cart.product_id, cart.product_size, cart.quantity - 1)
-                            }
+                            onClick={async () => {
+                              try {
+                                // 서버에 수량 변경 요청을 보내고
+                                await quantityChange(userId, cart.product_id, cart.product_size, cart.quantity - 1);
+                            
+                                // 서버 응답 후에 `checkItems` 상태 업데이트
+                                handleQuantityChange(cart.product_id, cart.product_size, cart.quantity - 1, cart.cart_item_id);
+                              } catch (error) {
+                                console.error("Failed to update quantity", error);
+                              }
+                            }}
                           >
                             -
                           </button>
                           <div>{cart.quantity}</div>
                           <button
                             className="quantity_btn"
-                            onClick={() =>
-                              quantityChange(userId, cart.product_id, cart.product_size, cart.quantity + 1)
-                            }
+                            onClick={async () => {
+                              try {
+                                // 서버에 수량 변경 요청을 보내고
+                                await quantityChange(userId, cart.product_id, cart.product_size, cart.quantity + 1);
+                            
+                                // 서버 응답 후에 `checkItems` 상태 업데이트
+                                handleQuantityChange(cart.product_id, cart.product_size, cart.quantity + 1, cart.cart_item_id);
+                              } catch (error) {
+                                console.error("Failed to update quantity", error);
+                              }
+                            }}
                           >
                             +
                           </button>
@@ -509,7 +734,7 @@ calculateDiyPrice(sortedDiyItems);
       type="checkbox"
       style={{ marginRight: '20px' }}
       onChange={(e) =>
-        handleSingleCheck(e.target.checked, item.product_id, null, item.quantity, true, item.cart_item_id)
+        handleSingleCheck(e.target.checked, item.product_id, null, item.quantity, true, item.cart_item_id, item.details)
       }
       checked={checkItems.some(
         (checkedItem) => checkedItem.cartItemId === item.cart_item_id && checkedItem.isDiy === true
@@ -548,8 +773,20 @@ calculateDiyPrice(sortedDiyItems);
                     <div style={{ width: '100px' }}>
                       <MdClose
                         style={{ cursor: 'pointer', height: '30px', width: '30px', color: '#d3d0d0' }}
-                        onClick={() => {
-                          noItem(userId, item.product_id, null, item.cart_item_id);
+                        // onClick={() => {
+                        //   noItem(userId, item.product_id, null, item.cart_item_id);
+                        // }}
+                        onClick={async () => {
+                          try {
+                            // 서버에 수량 변경 요청을 보내고
+                            // await handleCheckChange(item.product_id, item.product_size, item.cart_item_id);
+                            await noItem(userId, item.product_id, null, item.cart_item_id);
+                        
+                            // 서버 응답 후에 `checkItems` 상태 업데이트
+                            handleCheckChange(item.product_id, null, item.cart_item_id);
+                          } catch (error) {
+                            console.error("Failed to delete items", error);
+                          }
                         }}
                       />
                     </div>
@@ -558,18 +795,34 @@ calculateDiyPrice(sortedDiyItems);
                     <div>
                       <button
                         className="quantity_btn"
-                        onClick={() =>
-                          quantityChange(userId, null, null, item.quantity - 1, item.cart_item_id)
-                        }
+                        onClick={async () => {
+                          try {
+                            // 서버에 수량 변경 요청을 보내고
+                            await quantityChange(userId, null, null, item.quantity - 1, item.cart_item_id);
+                        
+                            // 서버 응답 후에 `checkItems` 상태 업데이트
+                            handleQuantityChange(item.product_id, item.product_size, item.quantity - 1, item.cart_item_id);
+                          } catch (error) {
+                            console.error("Failed to update quantity", error);
+                          }
+                        }}
                       >
                         -
                       </button>
                       <div>{item.quantity}</div>
                       <button
                         className="quantity_btn"
-                        onClick={() =>
-                          quantityChange(userId, null, null, item.quantity + 1, item.cart_item_id)
-                        }
+                        onClick={async () => {
+                          try {
+                            // 서버에 수량 변경 요청을 보내고
+                            await  quantityChange(userId, null, null, item.quantity + 1, item.cart_item_id);
+                        
+                            // 서버 응답 후에 `checkItems` 상태 업데이트
+                            handleQuantityChange(item.product_id, item.product_size, item.quantity + 1, item.cart_item_id);
+                          } catch (error) {
+                            console.error("Failed to update quantity", error);
+                          }
+                        }}
                       >
                         +
                       </button>
@@ -600,7 +853,10 @@ calculateDiyPrice(sortedDiyItems);
               <div>
                 <p>
                   <span>총 상품금액 </span>
-                  <span>{totalPrice}원</span>{' '}
+                  <span>
+                    {checkItems.length === 0 ? totalPrice : selectedPrice}
+                    {/* {totalPrice} */}
+                    원</span>{' '}
                 </p>
                 <p>
                   <span>총 배송비 </span>
@@ -609,7 +865,10 @@ calculateDiyPrice(sortedDiyItems);
               </div>
               <p>
                 <span>결제예정금액 : </span>
-                <span> {totalPrice}원</span>
+                <span> 
+                {checkItems.length === 0 ? totalPrice : selectedPrice}
+                  {/* {totalPrice} */}
+                  원</span>
               </p>
             </div>
             <div className="cart_purchase_bottom">

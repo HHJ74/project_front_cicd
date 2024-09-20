@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import './Community.css';
+import axios from 'axios';
 
 const Community = () => {
   // const [currentPage, setCurrentPage] = useState(1);
@@ -9,6 +10,15 @@ const Community = () => {
   // };
   // const totalPages = Math.ceil(contents.length / itemsPerPage);
   // const [contents, setcontents] = useState([]);
+  const [write, setWrite] = useState([])
+
+  // useEffect(()=>{
+  //   axios.get(`https://whippedb4.hyee34.site/community_announcement`).then((response) => {
+  //     const texts =response.data;
+  //     setWrite(texts)
+  //     console.log(write);
+  //   })
+  // }, [])
 
 
   return (
@@ -27,10 +37,10 @@ const Community = () => {
             <div className='contents-container'>
               <div>
                 <div className='contents-basis'>
-                  <p className='number'>번호</p>
+                  <p className='number'>숫자</p>
                   <p className='basis-title'>제목</p>
-                  <p className='author'>작성자</p>
-                  <p className='date'>작성일자</p>
+                  <p className='author'>이름</p>
+                  <p className='date'>날짜</p>
                   <p className='views'>조회</p>
                 </div>
                 <div className='contents-upload'>내용이 없습니다.</div>
@@ -51,7 +61,7 @@ const Community = () => {
             <div className='contents-footer'>
               <select className='footer-dropdown'>
                 <option value="title">제목</option>
-                <option value="author">작성자</option>
+                <option value="author">이름</option>
               </select>
 
               <input 

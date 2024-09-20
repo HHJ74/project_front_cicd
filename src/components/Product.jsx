@@ -8,7 +8,7 @@ const Product = () => {
 
   useEffect(() => {
     // 서버가 먼저 실행되어야 성공적으로 연결됩니다.
-    axios.get('https://whipped.purple-coding.site/get_products').then((response) => {
+    axios.get('https://whippedb4.hyee34.site/get_products').then((response) => {
       // console.log(response.data);
       setPdata(response.data);
     });

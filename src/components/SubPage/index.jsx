@@ -5,7 +5,9 @@ import '../../App.css'
 import CartModal from '../CartModal'
 const index = () => {
   return (
-    <div className="subpg_wrapper">
+    <div className="subpg_wrapper" 
+    style={{height:"100%"}}
+    >
       <Navbar/>
       <Sub/>
     </div>

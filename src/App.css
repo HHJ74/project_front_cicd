@@ -111,6 +111,15 @@
 .left p{
   cursor : pointer;
 }
+.navi .hamburger {
+  display: none; 
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.navi .hamburger{
+  font-size:30px;
+}
 .login{
   display: flex; 
   font-weight:bold;
@@ -118,6 +127,10 @@
 }
 .login span{
   font-size:16px;
+}
+
+.login .cartimg{
+  display:none;
 }
 
 .main_cart{
@@ -152,8 +165,14 @@
 }
 .main-photo-wrapper img{
   height: 100vh;
+  width : 100vw;
 }
 
+/* @media screen and (max-width: 1338px) {
+ .middle_img{
+  display:none;
+ }
+} */
 
 /* .second_img {
   width: 100%;
@@ -191,7 +210,7 @@
 }
 
 .middle_txt{
-  width: 45%;
+  width: 45vw;
   height:100%;
   text-align: start;
   padding-top: 70px;;
@@ -225,12 +244,16 @@
 
 .middle_img{
   height: 100%;
-  width:55%
+  width:55vw;
+  padding-top :15px;
+  padding-right: 15px;
 }
 .middle_img img{
   height:100%;
   width:100%;
 }
+
+
 .reactPpayer_01{
   display: block;
   margin-top:500px;
@@ -295,7 +318,8 @@ color:rgb(109, 105, 105);
 /* ------------------ Sub PAGE ------------------ */ 
 .subpg_wrapper{
   background-color:rgb(246, 246, 242) ;
-  height: 100vh
+  height: 100%;
+  min-height: 100vh;
 }
 .subpg_wrapper .blur{
   background-color:rgb(246, 246, 242);
@@ -330,7 +354,6 @@ color:rgb(109, 105, 105);
 .sub_img{
   height: 300px;
   width: 100%;
-
   position:relative;
   margin-bottom: 20px;
 }
@@ -569,7 +592,8 @@ color:rgb(109, 105, 105);
 
 .cart{
   height : 100%;
-  background-color: rgb(246, 246, 242);}
+  background-color: rgb(246, 246, 242);
+}
 
 .cart_open{
   height:35px;
@@ -819,6 +843,36 @@ padding-left:90px;
   background-color: #aab89d;
   color : white;
 }
+.cart_normal_2 button:first-child{
+  margin-left: 10px;
+}
+.cart_normal_2 button {
+  margin-top: 7px;
+}
+.cart_normal_2_wrapper{
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: end;
+  padding-bottom:12px;
+  border-bottom : solid rgb(232, 226, 226);
+}
+.input_wrapper{
+  position:relative;
+
+}
+.cart_normal{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.normal_input{
+  position:absolute;
+  right: 15px;
+  bottom:-5px;
+  z-index: 999;
+  transform: scale(1.3)
+}
 
 /* Middle2 section */
 .middle2_wrapper{
@@ -866,8 +920,184 @@ padding-left:90px;
   font-size: 18px;
 }
 
+
+
 /* DIY ITEM */
 .selectProduct_diy {
   display : flex;
   flex-direction: column;
+}
+
+.productSelect{
+  display :flex;
+  justify-content: center;
+}
+
+
+
+/* 반응형 */
+/* 1700px cartPage */
+@media (max-width: 1199.98px){
+.map_wrapper{
+  width : 60%;
+}
+}
+
+@media(max-width :900px){
+  .cart_content{
+    display: flex;
+    flex-direction: column;
+  }
+  .map_wrapper{
+    width: 100%;
+  }
+  .cart_purchase{
+    width: 100%
+  }
+}
+/* 1200px */
+@media (max-width: 1279.98px) {
+  .middle_img {
+      aspect-ratio: unset;
+      width: 40%;
+      margin-left: auto;
+  }
+
+  .middle_wrapper{
+    height:auto
+  }
+  .middle_txt{
+    padding-left:30px;
+  }
+
+
+  .middle_txt p{
+    font-size: 20px;
+  }
+  .txt_top{
+    height:70%
+  }
+
+  .middle2_wrapper{
+    height:auto;
+    padding-bottom: 70px;
+  }
+  .skinModal{
+    width:230px;
+}
+  .sub_wrapper{
+    padding-left:230px
+  }
+  .sub_item_wrapper{
+    width: 35%;
+    min-width: 290px;
+}
+.sub_hover p{
+  font-size: 18px;
+}
+}
+/* 780px */
+@media (max-width: 815px){
+  .middle_wrapper{
+    display: flex;
+    flex-direction: column;
+    height:100%;
+  }
+  .middle_txt{
+    width: 90%;
+    height: auto;
+    margin-left : 20px;
+  }
+  .middle_img{
+    width:90%;
+    margin-left:30px;
+    margin-right:0;
+    margin-top: 100px;
+    height: auto;
+    padding-right:0;
+  }
+  .middle_img img{
+    width: 100%;
+  }
+  .middle_txt > .txt_bottom p{
+    font-weight: lighter;
+  }
+  .middle2_wrapper{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding-bottom:0
+  }
+  .middle2_content{
+    width: 100%;
+  }
+
+  .middle2_content:nth-last-child(){
+    height:auto;
+  }
+
+  .footer_wrapper div:first-child{
+    display: none;
+  }
+
+  .footer2 li{
+    font-size:17px;
+  }
+
+  .middle_txt p{
+    font-size: 18px;
+    font-weight:normal
+  }
+  .navi {
+    padding-left:50px;
+    padding-right: 50px;
+  }
+  .navi .left {
+    display: none;
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    top: 50px;  
+    right: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+
+  .navi .hamburger {
+    display: flex;  
+  }
+
+  .main_cart {
+    display:flex;
+    align-items: center;
+  }
+
+  .login .logincart{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login .cartimg{
+    display: block;
+  }
+
+  .navi .open {
+    display: flex;
+    width: 100px;
+    background-color: rgb(241, 242, 238);
+    margin-left:17px;
+    margin-top:14px;
+    height: auto;
+  }
+  .navi .open p{
+    padding-bottom:10px;
+    padding-top:10px;
+    border-bottom:solid rgb(180, 180, 178) 0.8px;
+  }
+
+  .navi .open p:last-child{
+    border-bottom :0
+  }
+
 }

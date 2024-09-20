@@ -52,7 +52,7 @@ const ProductDetail = () => {
     };
 
     try {
-      await axios.post(`https://whipped.purple-coding.site/add_item_detail/${userId}`, cartItem, {
+      await axios.post(`https://whippedb4.hyee34.site/add_item_detail/${userId}`, cartItem, {
         headers: { 'Content-Type': 'application/json' },
       });
 
@@ -73,10 +73,10 @@ const ProductDetail = () => {
         let response;
         if (productId === '6') {
           // 모든 제품 데이터를 가져오기 위한 API 호출
-          response = await axios.get('https://whipped.purple-coding.site/get_product');
+          response = await axios.get('https://whippedb4.hyee34.site/get_product');
         } else {
           // 특정 제품 데이터를 가져오기 위한 API 호출
-          response = await axios.get(`https://whipped.purple-coding.site/get_detail_products/${productId}`);
+          response = await axios.get(`https://whippedb4.hyee34.site/get_detail_products/${productId}`);
         }
 
         setPdata(response.data);

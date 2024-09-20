@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import SubPage from './components/SubPage';
 import Login from './components/Login';
@@ -17,7 +17,7 @@ import Find_id from './components/Find_id';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="App">
         <Routes>
           <Route path="/" element={<MainPage />}></Route>
@@ -36,7 +36,7 @@ function App() {
           <Route path="/community" element={<Community/>} />
         </Routes>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

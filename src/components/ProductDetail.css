@@ -225,3 +225,59 @@ margin: 0 auto;
 .productQuantity button{
   background-color: #aab89d ;
 }
+
+@media (max-width: 1279.98px) {
+  .detailLeft{
+    width: 45%;
+  }
+  .detailLeft .productWrap{
+    margin-left: 40px;
+    margin-right: 10px;
+  }
+  .detailRight{
+    width: 55%
+  }
+
+
+  .detailInfo div p{
+    font-size:16px;
+  }
+}
+
+@media (max-width: 980px) {
+  .detailArea{
+    display: flex;
+    flex-direction: column;
+  }
+  .detailLeft{
+    order:2;
+    width:100%;
+    display: flex;
+    justify-content: center;
+  }
+  .detailLeft .productWrap {
+    width: 60%;
+    margin:0
+  }
+  .detailRight{
+    width: 100%
+  }
+  .detailRight .detailInfo{
+    position:relative;
+    order:1
+
+  }
+
+  .detailRight .detailInfo .desDetail{
+    text-align:center
+  }
+  .paymentButton button{
+    width: 40%;
+    height: 15%;
+    margin-bottom: 40px;
+  }
+  .detailInfo div p{
+    font-size: 15px;
+  }
+
+}

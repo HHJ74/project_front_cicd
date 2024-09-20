@@ -74,3 +74,39 @@ width: 50%;
   /* border: solid rgb(79, 94, 109) 0.5px; */
   
 }
+@media (max-width: 1199.98px) {
+.slider{
+  padding-top: 30px;
+}
+}
+@media (max-width: 780px) {
+.slider {
+  display:flex;
+  flex-direction: column;
+  padding-top:0
+}
+.slider .skin_img_one{
+  width: 100%;
+  padding-right:60px;
+  order:2;
+}
+
+.slider .skin_img_one img{
+  width: 100%;
+  margin-left:30px;
+
+  
+}
+.slider .skin_img_two{
+  width:100%;
+  order:2
+}
+
+.slider .skin_btn{
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  order:1;
+}
+}
