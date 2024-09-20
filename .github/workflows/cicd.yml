@@ -37,5 +37,7 @@ jobs:
         run: docker pull gpgus0704/whipped_pj_front:latest
       - name: Delete existing container
         run: docker rm -f reactContainer
+      - name: Delete cashe in ec2 linux
+        run: docker system prune -a -f
       - name: Run container
         run: docker run -d -p 80:80 --name reactContainer gpgus0704/whipped_pj_front

@@ -13,7 +13,7 @@ Whipped는 친환경 제품을 판매하는 쇼핑몰 웹사이트입니다. 이
 1. **레포지토리 클론:**
 
    ```bash
-   git clone https://github.com/hyeyeon-34/whipped_f4.git
+   git clone https://github.com/gpgus0704/front.git
    cd whipped_f4
 
 2. **의존성 설치**
@@ -37,5 +37,3 @@ Whipped는 친환경 제품을 판매하는 쇼핑몰 웹사이트입니다. 이
 
 
 ### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
