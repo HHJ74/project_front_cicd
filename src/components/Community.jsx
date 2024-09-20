@@ -13,7 +13,7 @@ const Community = () => {
   const [write, setWrite] = useState([])
 
   // useEffect(()=>{
-  //   axios.get(`https://whippedb4.hyee34.site/community_announcement`).then((response) => {
+  //   axios.get(`https://whipped-back.purple-coding.site/community_announcement`).then((response) => {
   //     const texts =response.data;
   //     setWrite(texts)
   //     console.log(write);

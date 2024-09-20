@@ -34,7 +34,7 @@ const Skin = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get('https://whippedb4.hyee34.site/get_product');
+        const response = await axios.get('https://whipped-back.purple-coding.site/get_product');
         setItem(response.data);
       } catch (error) {
         console.error('Error fetching items:', error);

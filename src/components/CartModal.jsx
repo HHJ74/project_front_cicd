@@ -22,7 +22,7 @@ const CartModal = ({ product, close, quantity }) => {
   useEffect(() => {
     const fetchCarts = async () => {
       try {
-        const response = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
+        const response = await axios.get(`https://whipped-back.purple-coding.site/get_cart/${userId}`);
         const { cartItems, diyItems } = response.data;
   
         if (!Array.isArray(cartItems) || !Array.isArray(diyItems)) {
@@ -31,7 +31,7 @@ const CartModal = ({ product, close, quantity }) => {
   
         // 상품 상세 정보를 요청하는 배열 생성
         const productRequests = cartItems.map(item =>
-          axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+          axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
         );
   
         // 수량을 관리할 Map 생성
@@ -52,7 +52,7 @@ const CartModal = ({ product, close, quantity }) => {
   
         // DIY 아이템 상태 업데이트 (details를 포함하는 경우)
         const diyProductRequests = diyItems.map(item =>
-          axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+          axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
         );
   
         const diyProductResponses = await Promise.all(diyProductRequests);
@@ -76,7 +76,7 @@ const CartModal = ({ product, close, quantity }) => {
   // useEffect(() => {
   //   const fetchCarts = async () => {
   //     try {
-  //       const response = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
+  //       const response = await axios.get(`https://whipped-back.purple-coding.site/get_cart/${userId}`);
   //       const { cartItems, diyItems } = response.data;
   
   //       if (!Array.isArray(cartItems) || !Array.isArray(diyItems)) {
@@ -85,7 +85,7 @@ const CartModal = ({ product, close, quantity }) => {
   
   //       // Fetch details for regular products
   //       const productRequests = cartItems.map(item =>
-  //         axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+  //         axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
   //       );
   
   //       // Create a quantity map
@@ -106,7 +106,7 @@ const CartModal = ({ product, close, quantity }) => {
   
   //       // Fetch details for DIY items
   //       const diyProductRequests = diyItems.map(item =>
-  //         axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+  //         axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
   //       );
   
   //       const diyProductResponses = await Promise.all(diyProductRequests);
@@ -170,7 +170,7 @@ const CartModal = ({ product, close, quantity }) => {
     };
       
     try {
-      await axios.post(`https://whippedb4.hyee34.site/add_item/${userId}`, cartItem, {
+      await axios.post(`https://whipped-back.purple-coding.site/add_item/${userId}`, cartItem, {
         headers: { 'Content-Type': 'application/json' },
       });
 

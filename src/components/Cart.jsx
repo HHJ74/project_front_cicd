@@ -157,10 +157,10 @@ const Cart = () => {
   useEffect(() => {
     const fetchCarts = async () => {
       try {
-        const response = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
+        const response = await axios.get(`https://whipped-back.purple-coding.site/get_cart/${userId}`);
         const {cartItems, diyItems } = response.data;
         const productRequests = cartItems.map((item) =>
-          axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+          axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
         );
 
         const productResponses = await Promise.all(productRequests);
@@ -173,7 +173,7 @@ const Cart = () => {
 
 
         const diyRequests = diyItems.map((item) =>
-          axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+          axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
         );
         const diyResponses = await Promise.all(diyRequests);
         
@@ -260,15 +260,15 @@ const Cart = () => {
         : { productId, productSize, newQuantity };
   
       // 수량 업데이트 요청
-      await axios.post(`https://whippedb4.hyee34.site/update_quantity/${userId}`, requestBody);
+      await axios.post(`https://whipped-back.purple-coding.site/update_quantity/${userId}`, requestBody);
   
       // 장바구니와 DIY 아이템 모두 새로 가져오기
-      const response = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
+      const response = await axios.get(`https://whipped-back.purple-coding.site/get_cart/${userId}`);
       const { cartItems, diyItems } = response.data;
   
       // 장바구니와 DIY 아이템의 상세 정보를 가져옵니다.
       const productRequests = cartItems.map(item =>
-        axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+        axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
       );
       const productResponses = await Promise.all(productRequests);
   
@@ -278,7 +278,7 @@ const Cart = () => {
       }));
   
       const diyRequests = diyItems.map(item =>
-        axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+        axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
       );
       const diyResponses = await Promise.all(diyRequests);
   
@@ -336,10 +336,10 @@ calculateDiyPrice(sortedDiyItems);
     
       if (isDiyItem) {
         // DIY 아이템 삭제 요청
-        await axios.post(`https://whippedb4.hyee34.site/delete_item/${userId}`, { cartItemId });
+        await axios.post(`https://whipped-back.purple-coding.site/delete_item/${userId}`, { cartItemId });
       } else {
         // 일반 아이템 삭제 요청
-        await axios.post(`https://whippedb4.hyee34.site/delete_item/${userId}`, { productId, productSize });
+        await axios.post(`https://whipped-back.purple-coding.site/delete_item/${userId}`, { productId, productSize });
       }
   
       // 장바구니에서 삭제된 아이템 필터링
@@ -352,7 +352,7 @@ calculateDiyPrice(sortedDiyItems);
       const productRequests = updatedCarts
         .filter(item => !item.is_bundle)  // is_bundle이 false인 경우에만 요청
         .map((item) =>
-          axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+          axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
         );
   
       const productResponses = await Promise.all(productRequests);
@@ -416,7 +416,7 @@ calculateDiyPrice(sortedDiyItems);
   
   const deleteAll = async()=>{
     try {
-     const response = await axios.post(`https://whippedb4.hyee34.site/delete_all/${userId}`)
+     const response = await axios.post(`https://whipped-back.purple-coding.site/delete_all/${userId}`)
       if (response.status === 200) {
         // Clear the cart items state to reflect the changes
         setCarts([])
@@ -482,10 +482,10 @@ calculateDiyPrice(sortedDiyItems);
       }
     });
     // 서버에 삭제 요청 전송
-    await axios.post(`https://whippedb4.hyee34.site/delete_checked_items/${userId}`, { items: itemsToDelete });
+    await axios.post(`https://whipped-back.purple-coding.site/delete_checked_items/${userId}`, { items: itemsToDelete });
 
     // 삭제 후 장바구니 데이터 가져오기
-    const updatedCartResponse = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
+    const updatedCartResponse = await axios.get(`https://whipped-back.purple-coding.site/get_cart/${userId}`);
     
     // 응답 데이터 로그에 찍기
     console.log('Updated Cart Response:', updatedCartResponse.data);
@@ -498,7 +498,7 @@ calculateDiyPrice(sortedDiyItems);
     const productRequests = updatedCarts
       .filter(item => !item.is_bundle)  // is_bundle이 false인 경우에만 요청
       .map(item =>
-        axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+        axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
       );
    
     // 상세 정보 응답 받기
@@ -516,7 +516,7 @@ calculateDiyPrice(sortedDiyItems);
     });
   
     const diyRequests = updatedDiyItems.map(item =>
-      axios.get(`https://whippedb4.hyee34.site/get_detail_products/${item.product_id}`)
+      axios.get(`https://whipped-back.purple-coding.site/get_detail_products/${item.product_id}`)
     );
     const diyResponses = await Promise.all(diyRequests);
 

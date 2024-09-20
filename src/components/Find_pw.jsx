@@ -40,7 +40,7 @@
 //             return;
 //         }
 
-//         axios.post('https://whippedb4.hyee34.site/findUser', values)
+//         axios.post('https://whipped-back.purple-coding.site/findUser', values)
 //         .then((res) => {
 //             if (res.status === 200) {
 //                 setFoundPw(res.data.userPw); // 서버에서 받은 비밀번호를 저장

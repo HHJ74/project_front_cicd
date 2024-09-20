@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 const Purchase = () => {
   const ProductImage = ({ imagePath }) => {
-    const baseURL = 'https://whippedb4.hyee34.site'; // 서버의 기본 URL
+    const baseURL = 'https://whipped-back.purple-coding.site'; // 서버의 기본 URL
     const imageUrl = `${baseURL}${imagePath}`; // 이미지 URL 조합
 
     return <img src={imageUrl} alt="Product" />;
@@ -157,7 +157,7 @@ const Purchase = () => {
   useEffect(() => {
     const fetchEach = async () => {
       try {
-        const response = await axios.get(`https://whippedb4.hyee34.site/each_purchase/${userId}`);
+        const response = await axios.get(`https://whipped-back.purple-coding.site/each_purchase/${userId}`);
         const eachItems = response.data;
         // console.log(eachItems);
         setEach(eachItems);

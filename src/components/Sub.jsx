@@ -23,7 +23,7 @@ const Sub = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://whippedb4.hyee34.site/get_products');
+        const response = await axios.get('https://whipped-back.purple-coding.site/get_products');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -36,7 +36,7 @@ const Sub = () => {
   const checkProductInCart = async (productId, productSize, isDiy = false) => {
     try {
       // 장바구니에서 일반 상품과 DIY 상품 모두 가져오기
-      const response = await axios.get(`https://whippedb4.hyee34.site/get_cart/${userId}`);
+      const response = await axios.get(`https://whipped-back.purple-coding.site/get_cart/${userId}`);
       const { cartItems, diyItems } = response.data;
       // console.log('Response data:', response.data); 
       if (isDiy) {
@@ -75,7 +75,7 @@ const Sub = () => {
 
           // 서버에 수량 업데이트 요청
           await axios.put(
-            `https://whippedb4.hyee34.site/update_item/${userId}`,
+            `https://whipped-back.purple-coding.site/update_item/${userId}`,
             {
               product_id: product.product_id,
               quantity: newQuantity,
@@ -120,7 +120,7 @@ const Sub = () => {
 
       try {
         // 장바구니에 제품을 추가하는 API 호출
-        await axios.post(`https://whippedb4.hyee34.site/add_item/${userId}`, cartItem, {
+        await axios.post(`https://whipped-back.purple-coding.site/add_item/${userId}`, cartItem, {
           headers: { 'Content-Type': 'application/json' },
         });
 
