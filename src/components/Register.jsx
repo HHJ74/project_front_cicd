@@ -129,7 +129,7 @@ const Register = () => {
   };
 
   // 이메일 종류 선택
-  const [emailIdentify, setEmailIdentify] = useState('naver.com');
+  const [emailIdentify, setEmailIdentify] = useState('직접입력');
   const emailList = ['naver.com', 'daum.net', 'gmail.com', '직접입력'];
 
   // 이메일 변경 시 호출되는 함수
